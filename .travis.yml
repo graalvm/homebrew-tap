@@ -10,6 +10,8 @@ script:
   - VERSION=$(brew cask info graalvm-ce | head -n 1 | awk '{print $2}')
   - TARGET_DIR="/Library/Java/JavaVirtualMachines/graalvm-ce-${VERSION}"
   - export PATH="${TARGET_DIR}/Contents/Home/bin:${PATH}"
+  # Ensure the expected `java` version is installed
+  - test ! -z "$(java -version 2>&1 | grep $VERSION)"
   # Print versions of official languages
   - java -version
   - js --version
