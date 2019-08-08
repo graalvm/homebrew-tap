@@ -1,0 +1,23 @@
+language: bash
+
+os: osx
+
+script:
+  # Check style
+  - brew cask style Casks/graalvm-ce.rb
+  # Install cask, extract its version, and update `PATH`
+  - brew cask install --require-sha graalvm/tap/graalvm-ce
+  - VERSION=$(brew cask info graalvm-ce | head -n 1 | awk '{print $2}')
+  - TARGET_DIR="/Library/Java/JavaVirtualMachines/graalvm-ce-${VERSION}"
+  - export PATH="${TARGET_DIR}/Contents/Home/bin:${PATH}"
+  # Print versions of official languages
+  - java -version
+  - js --version
+  - lli --version
+  # Install and print versions of experimental languages and tools
+  - gu install python native-image R ruby
+  - graalpython --version
+  - native-image --version
+  # - R --version # not working, see https://github.com/oracle/fastr/issues/89
+  - R -e '1'
+  - ruby --version
