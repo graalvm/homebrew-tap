@@ -1,14 +1,15 @@
-cask "graalvm-ce" do
-  version "19.1.1"
-  sha256 "85711322866ddacda88d3a592c76520188b3d7c40b6c39cd9943856e72eb6c72"
+cask 'graalvm-ce' do
+  version '19.1.1'
+  sha256 '85711322866ddacda88d3a592c76520188b3d7c40b6c39cd9943856e72eb6c72'
 
-  JVMS_DIR = "/Library/Java/JavaVirtualMachines"
-  TARGET_DIR = "#{JVMS_DIR}/graalvm-ce-#{version}"
+  JVMS_DIR = '/Library/Java/JavaVirtualMachines'.freeze
+  TARGET_DIR = "#{JVMS_DIR}/graalvm-ce-#{version}".freeze
 
-  name "GraalVM Community Edition"
+  # github.com/oracle/graal was verified as official when first introduced to the cask
   url "https://github.com/oracle/graal/releases/download/vm-#{version}/graalvm-ce-darwin-amd64-#{version}.tar.gz"
-  homepage 'https://www.graalvm.org'
   appcast 'https://github.com/oracle/graal/releases.atom'
+  name 'GraalVM Community Edition'
+  homepage 'https://www.graalvm.org/'
 
   artifact "graalvm-ce-#{version}", target: TARGET_DIR
 
