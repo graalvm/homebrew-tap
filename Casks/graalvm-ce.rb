@@ -1,17 +1,25 @@
 cask 'graalvm-ce' do
-  version '19.2.1'
-  sha256 '988b943bf956f88079123c2d6225d188050c1f34b3ff47449be7c7ed241dc00f'
-
+  version '19.3.0'
+  sha256 '5a7eaead66971e25bef2c21d94d0760b54bda13761908545be8c0323df17da4a'
+  
   JVMS_DIR = '/Library/Java/JavaVirtualMachines'.freeze
   TARGET_DIR = "#{JVMS_DIR}/graalvm-ce-#{version}".freeze
+  PATCH_DIR = "#{TARGET_DIR}/Contents/MacOS".freeze
 
   # github.com/oracle/graal was verified as official when first introduced to the cask
-  url "https://github.com/oracle/graal/releases/download/vm-#{version}/graalvm-ce-darwin-amd64-#{version}.tar.gz"
+  # Starting with 19.3.0 precompiled builds are now at https://github.com/graalvm/graalvm-ce-builds
+  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-#{version}/graalvm-ce-java11-darwin-amd64-#{version}.tar.gz"
   appcast 'https://github.com/oracle/graal/releases.atom'
   name 'GraalVM Community Edition'
   homepage 'https://www.graalvm.org/'
 
-  artifact "graalvm-ce-#{version}", target: TARGET_DIR
+  artifact "graalvm-ce-java11-#{version}", target: TARGET_DIR
+
+  postflight do
+    system_command '/usr/bin/sh',
+                   args: ['-c',"mkdir #{PATCH_DIR} && cd #{PATCH_DIR} && ln -s ../Home/lib/jli/libjli.dylib"],
+                   sudo: true
+  end
 
   caveats <<~EOS
     Installing GraalVM CE in #{JVMS_DIR} requires root permissions.
