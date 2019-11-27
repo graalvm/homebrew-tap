@@ -1,20 +1,20 @@
-cask 'graalvm-ce' do
-  version '19.2.1'
-  sha256 '988b943bf956f88079123c2d6225d188050c1f34b3ff47449be7c7ed241dc00f'
+cask 'graalvm-ce-java8' do
+  version '19.3.0'
+  sha256 '6c43063148368dc537a58706fcbf332583371ebb32dfdb78017e6a80e139658b'
 
   JVMS_DIR = '/Library/Java/JavaVirtualMachines'.freeze
-  TARGET_DIR = "#{JVMS_DIR}/graalvm-ce-#{version}".freeze
+  TARGET_DIR = "#{JVMS_DIR}/#{cask}-#{version}".freeze
 
-  # github.com/oracle/graal was verified as official when first introduced to the cask
-  url "https://github.com/oracle/graal/releases/download/vm-#{version}/graalvm-ce-darwin-amd64-#{version}.tar.gz"
+  # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
+  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-#{version}/#{cask}-darwin-amd64-#{version}.tar.gz"
   appcast 'https://github.com/oracle/graal/releases.atom'
-  name 'GraalVM Community Edition'
+  name 'GraalVM Community Edition (Java 8)'
   homepage 'https://www.graalvm.org/'
 
-  artifact "graalvm-ce-#{version}", target: TARGET_DIR
+  artifact "#{cask}-#{version}", target: TARGET_DIR
 
   caveats <<~EOS
-    Installing GraalVM CE in #{JVMS_DIR} requires root permissions.
+    Installing GraalVM CE (Java 8) in #{JVMS_DIR} requires root permissions.
     You may be asked to enter your password to proceed.
 
     To use GraalVM CE, you may want to change your `JAVA_HOME`:
