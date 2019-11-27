@@ -2,24 +2,34 @@ language: bash
 
 os: osx
 
+env:
+  - JAVA_VERSION=8
+  - JAVA_VERSION=11
+
 script:
+  - CASK_NAME="graalvm-ce-java${JAVA_VERSION}"
   # Check style
-  - brew cask style Casks/graalvm-ce.rb
+  - brew cask style Casks/${CASK_NAME}.rb
+  # Install tap
+  - GRAALVM_TAP_DIR="$(dirname $(dirname $(brew --repo homebrew/core)))/graalvm/homebrew-tap"
+  - mkdir -p $(dirname $GRAALVM_TAP_DIR)
+  - ln -s $(pwd) $GRAALVM_TAP_DIR
   # Install cask, extract its version, and update `PATH`
-  - brew cask install --require-sha graalvm/tap/graalvm-ce
-  - VERSION=$(brew cask info graalvm-ce | head -n 1 | awk '{print $2}')
-  - TARGET_DIR="/Library/Java/JavaVirtualMachines/graalvm-ce-${VERSION}"
+  - HOMEBREW_NO_AUTO_UPDATE=1 brew cask install --require-sha graalvm/tap/${CASK_NAME}
+  - VERSION=$(brew cask info $CASK_NAME | head -n 1 | awk '{print $2}')
+  - TARGET_DIR="/Library/Java/JavaVirtualMachines/${CASK_NAME}-${VERSION}"
   - export PATH="${TARGET_DIR}/Contents/Home/bin:${PATH}"
   # Ensure the expected `java` version is installed
   - test ! -z "$(java -version 2>&1 | grep $VERSION)"
+  # Ensure GraalVM is picked up by `java_home`
+  - /usr/libexec/java_home -V 2>&1 | grep "GraalVM CE"
   # Print versions of official languages
   - java -version
   - js --version
   - lli --version
   # Install and print versions of experimental languages and tools
-  - gu install python native-image R ruby
+  - gu install --no-progress python native-image R ruby
   - graalpython --version
   - native-image --version
-  # - R --version # not working, see https://github.com/oracle/fastr/issues/89
-  - R -e '1'
+  - R --version
   - ruby --version
