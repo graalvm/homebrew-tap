@@ -20,6 +20,7 @@ cask 'graalvm-ce-java11' do
     libjli_path = "#{TARGET_DIR}/Contents/Home/lib/jli/#{libjli_filename}"
     libjli_symlink_path = "#{macos_dir}/#{libjli_filename}"
     next if File.exist?(libjli_symlink_path)
+
     system_command '/bin/mkdir', args: ['-p', macos_dir], sudo: true
     system_command '/bin/ln', args: ['-s', libjli_path, libjli_symlink_path], sudo: true
   end
