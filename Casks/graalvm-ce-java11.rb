@@ -1,6 +1,6 @@
 cask 'graalvm-ce-java11' do
-  version '19.3.0'
-  sha256 '5a7eaead66971e25bef2c21d94d0760b54bda13761908545be8c0323df17da4a'
+  version '19.3.1'
+  sha256 'b3ea6cf6545332f667b2cc742bbff9949d47e49eecea06334d14f0b69aa1a3f3'
 
   JVMS_DIR = '/Library/Java/JavaVirtualMachines'.freeze
   TARGET_DIR = "#{JVMS_DIR}/#{cask}-#{version}".freeze
@@ -20,6 +20,7 @@ cask 'graalvm-ce-java11' do
     libjli_path = "#{TARGET_DIR}/Contents/Home/lib/jli/#{libjli_filename}"
     libjli_symlink_path = "#{macos_dir}/#{libjli_filename}"
     next if File.exist?(libjli_symlink_path)
+
     system_command '/bin/mkdir', args: ['-p', macos_dir], sudo: true
     system_command '/bin/ln', args: ['-s', libjli_path, libjli_symlink_path], sudo: true
   end
