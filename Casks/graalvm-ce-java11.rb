@@ -1,6 +1,6 @@
 cask 'graalvm-ce-java11' do
-  version '19.3.0.2'
-  sha256 '1c123aef2f18f5d71a80298260a703f634e3f8e3fd5c3aa91614949f8f238301'
+  version '19.3.1'
+  sha256 'b3ea6cf6545332f667b2cc742bbff9949d47e49eecea06334d14f0b69aa1a3f3'
 
   JVMS_DIR = '/Library/Java/JavaVirtualMachines'.freeze
   TARGET_DIR = "#{JVMS_DIR}/#{cask}-#{version}".freeze
