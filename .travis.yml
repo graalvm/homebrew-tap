@@ -3,11 +3,13 @@ language: bash
 os: osx
 
 env:
-  - JAVA_VERSION=8
-  - JAVA_VERSION=11
+  - JAVA_VERSION=8 RELEASE_STREAM=
+  - JAVA_VERSION=11 RELEASE_STREAM=
+  - JAVA_VERSION=8 RELEASE_STREAM=-lts
+  - JAVA_VERSION=11 RELEASE_STREAM=-lts
 
 script:
-  - CASK_NAME="graalvm-ce-java${JAVA_VERSION}"
+  - CASK_NAME="graalvm-ce${RELEASE_STREAM}-java${JAVA_VERSION}"
   # Check style
   - brew cask style Casks/${CASK_NAME}.rb
   # Install tap
