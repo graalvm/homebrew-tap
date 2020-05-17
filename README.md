@@ -40,8 +40,5 @@ preferences pane or by running the following command:
 
  `xattr -r -d com.apple.quarantine /Library/Java/JavaVirtualMachines/graalvm-ce-javaV-XX.Y.Z`
  
-The GraalVM casks might ask you for sudo permissions to remove the
-quarantine attributes as part of the installation process.
-
 
 [Homebrew]: https://brew.sh/
