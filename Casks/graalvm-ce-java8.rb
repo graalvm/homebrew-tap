@@ -14,6 +14,9 @@ cask 'graalvm-ce-java8' do
   artifact "#{cask}-#{version}", target: TARGET_DIR
 
   caveats <<~EOS
+    !! GraalVM Community Edition releases for MacOS based on JDK 8 are 
+    no longer being built.
+
     Installing GraalVM CE (Java 8) in #{JVMS_DIR} requires root permissions.
     You may be asked to enter your password to proceed.
 
