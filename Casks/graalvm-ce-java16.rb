@@ -1,23 +1,34 @@
-cask 'graalvm-ce-java8' do
-  version '21.0.0.2'
-  sha256 '25a653a44b3ad63479d7ae35d921c8d39282ff1849243f1afc0ffddd443e9079'
+cask 'graalvm-ce-java16' do
+  version '21.1.0'
+  sha256 'dafece9d03251304a6d9fc242862cfc08b85e2b8921d3b019a8a19b95af78e2c'
 
   JVMS_DIR = '/Library/Java/JavaVirtualMachines'.freeze
   TARGET_DIR = "#{JVMS_DIR}/#{cask}-#{version}".freeze
 
-  # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
+# github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
   url "https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-#{version}/#{cask}-darwin-amd64-#{version}.tar.gz"
   appcast 'https://github.com/oracle/graal/releases.atom'
-  name 'GraalVM Community Edition (Java 8)'
+  name 'GraalVM Community Edition (Java 16)'
   homepage 'https://www.graalvm.org/'
 
   artifact "#{cask}-#{version}", target: TARGET_DIR
 
-  caveats <<~EOS
-    !! GraalVM Community Edition releases for MacOS based on JDK 8 are 
-    no longer being built.
+  postflight do
+    # Correct symlink 
+    macos_dir = "#{TARGET_DIR}/Contents/MacOS"
+    libjli_filename = 'libjli.dylib'
+    libjli_path = "#{TARGET_DIR}/Contents/Home/lib/#{libjli_filename}"
+    libjli_symlink_path = "#{macos_dir}/#{libjli_filename}"
+    system_command '/bin/mkdir', args: ['-p', macos_dir], sudo: true
+    system_command '/bin/ln', args: ['-s', '-f', libjli_path, libjli_symlink_path], sudo: true
+  end
 
-    Installing GraalVM CE (Java 8) in #{JVMS_DIR} requires root permissions.
+  caveats <<~EOS
+    !! GraalVM distributions based on OpenJDK 16 are considered experimental 
+    with several known limitations. Please see
+      https://www.graalvm.org/release-notes/known-issues/
+
+    Installing GraalVM CE (Java 16) in #{JVMS_DIR} requires root permissions.
     You may be asked to enter your password to proceed.
 
     On macOS Catalina, you may get a warning that "the developer cannot be
