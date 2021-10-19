@@ -1,0 +1,53 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        java-version: [11, 17, 8, 16]
+        release-stream: ['', '-lts']
+        exclude:
+          - java-version: 17
+            release-stream: '-lts'
+          - java-version: 16
+            release-stream: '-lts'
+    env:
+      CASK_NAME: 'graalvm-ce${{ matrix.release-stream }}-java${{ matrix.java-version }}'
+    name: Testing GraalVM CE ${{ matrix.java-version }}${{ matrix.release-stream }} Cask
+    steps:
+    - name: Clone repository
+      uses: actions/checkout@v2
+    - name: Check style
+      run: brew style Casks/${CASK_NAME}.rb
+    - name: Install tap
+      run: |
+        tap_dir="$(dirname $(dirname $(brew --repo homebrew/core)))/graalvm/homebrew-tap"
+        mkdir -p $(dirname $tap_dir)
+        ln -s $(pwd) $tap_dir
+    - name: Install cask, extract its version, and update $PATH
+      run: |
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install --require-sha graalvm/tap/${CASK_NAME}
+        version=$(brew info $CASK_NAME | head -n 1 | awk '{print $2}')
+        graalvm_bin_dir="/Library/Java/JavaVirtualMachines/${CASK_NAME}-${version}/Contents/Home/bin"
+        echo "${graalvm_bin_dir}" >> $GITHUB_PATH
+        export PATH="${graalvm_bin_dir}:${PATH}"
+        # Ensure the expected `java` version is installed
+        test ! -z "$(java -version 2>&1 | grep $version)"
+        # Ensure GraalVM is picked up by `java_home`
+        /usr/libexec/java_home -V 2>&1 | grep "GraalVM CE"
+    - name: Print versions of official languages
+      run: |
+        java -version
+        js --version
+        lli --version
+    - name: Install and print versions of experimental languages and tools
+      if: ${{ matrix.release-stream != '-lts' }}
+      run: |
+        gu install --no-progress python native-image R ruby
+        graalpython --version
+        native-image --version
+        R --version
+        ruby --version
