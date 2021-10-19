@@ -3,21 +3,33 @@
 Run one of the following commands to install GraalVM Community Edition with [Homebrew]:
 
 ```bash
+# Supported GraalVM releases
+brew install --cask graalvm/tap/graalvm-ce-java11
+brew install --cask graalvm/tap/graalvm-ce-lts-java11
+
+brew install --cask graalvm/tap/graalvm-ce-java17
+
+# GraalVM releases of deprecated JDK versions
 brew install --cask graalvm/tap/graalvm-ce-java8
 brew install --cask graalvm/tap/graalvm-ce-lts-java8
 
-brew install --cask graalvm/tap/graalvm-ce-java11
-brew install --cask graalvm/tap/graalvm-ce-lts-java11
+brew install --cask graalvm/tap/graalvm-ce-java16
 ```
 
 Once installed, these casks can be upgraded (if an update is available) with the following commands:
 
 ```bash
+# Supported GraalVM releases
+brew upgrade --cask graalvm/tap/graalvm-ce-java11
+brew upgrade --cask graalvm/tap/graalvm-ce-lts-java11
+
+brew upgrade --cask graalvm/tap/graalvm-ce-java17
+
+# GraalVM releases of deprecated JDK versions
 brew upgrade --cask graalvm/tap/graalvm-ce-java8
 brew upgrade --cask graalvm/tap/graalvm-ce-lts-java8
 
-brew upgrade --cask graalvm/tap/graalvm-ce-java11
-brew upgrade --cask graalvm/tap/graalvm-ce-lts-java11
+brew upgrade --cask graalvm/tap/graalvm-ce-java16
 ```
 
 ## How to Use
