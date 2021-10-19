@@ -34,13 +34,13 @@ cask "graalvm-ce-java17" do
     On macOS Catalina, you may get a warning that "the developer cannot be
     verified". This check can be disabled in the "Security & Privacy"
     preferences pane or by running the following command:
-      xattr -r -d com.apple.quarantine #{target_dir}
+      xattr -r -d com.apple.quarantine "#{target_dir}"
 
-    To use GraalVM CE, you may want to change your `JAVA_HOME`:
-      export JAVA_HOME=#{target_dir}/Contents/Home
+    To use GraalVM CE, you may want to change your $JAVA_HOME:
+      export JAVA_HOME="#{target_dir}/Contents/Home"
 
-    or you may want to add its `bin` directory to your `PATH`:
-      export PATH=#{target_dir}/Contents/Home/bin:"$PATH"
+    or you may want to add its `bin` directory to your $PATH:
+      export PATH="#{target_dir}/Contents/Home/bin:$PATH"
 
     GraalVM CE is licensed under the GPL 2 with Classpath exception:
       https://github.com/oracle/graal/blob/master/LICENSE
