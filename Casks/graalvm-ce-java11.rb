@@ -1,12 +1,23 @@
 cask "graalvm-ce-java11" do
-  version "22.0.0.2"
-  sha256 "8280159b8a66c51a839c8079d885928a7f759d5da0632f3af7300df2b63a6323"
+  if Hardware::CPU.intel?
+    version "22.0.0.2"
+    sha256 "8280159b8a66c51a839c8079d885928a7f759d5da0632f3af7300df2b63a6323"
+    arch = "amd64"
+  else
+    version "22.1.0-dev"
+    sha256 "a5dd75f8835a64847d2df12ee872f845022624b3c880d7f11fb65ff0c41af995"
+    arch = "aarch64"
+  end
 
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/#{cask}-#{version}".freeze
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
-  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-#{version}/#{cask}-darwin-amd64-#{version}.tar.gz"
+  if Hardware::CPU.intel?
+    url "https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-#{version}/#{cask}-darwin-#{arch}-#{version}.tar.gz"
+  else # The following branch can be folded as soon there is a GraalVM release with M1 support
+    url "https://github.com/graalvm/graalvm-ce-dev-builds/releases/download/22.1.0-dev-20220321_2332/#{cask}-darwin-#{arch}-dev.tar.gz"
+  end
   appcast "https://github.com/oracle/graal/releases.atom"
   name "GraalVM Community Edition (Java 11)"
   homepage "https://www.graalvm.org/"
