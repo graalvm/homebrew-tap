@@ -30,10 +30,6 @@ cask "graalvm-ce-java17" do
   end
 
   caveats <<~EOS
-    !! GraalVM distributions based on OpenJDK 17 are considered experimental#{" "}
-    with several known limitations. Please see
-      https://www.graalvm.org/release-notes/known-issues/
-
     Installing GraalVM CE (Java 17) in #{jvms_dir} requires root permissions.
     You may be asked to enter your password to proceed.
 
