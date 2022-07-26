@@ -1,11 +1,11 @@
 cask "graalvm-ce-java17" do
   arch = Hardware::CPU.intel? ? "amd64" : "aarch64"
-  version "22.1.0"
+  version "22.2.0"
 
   if Hardware::CPU.intel?
-    sha256 "b9327fa73531a822d9a27d25980396353869eefbd73fdcef89b4fceb9f529c75"
+    sha256 "b92b6f5f7f11282f20c8f8b94ea1c16d776cbadd7b254119836a7ace9f513b0d"
   else
-    sha256 "06075cd390bd261721392cd6fd967b1d28c0500d1b5625272ea906038e5cd533"
+    sha256 "cfbeb38cd707a330048ab2140cb185176201c5cb654df752fcb4bd95e899b4ec"
   end
 
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
