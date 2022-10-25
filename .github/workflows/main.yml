@@ -21,7 +21,7 @@ jobs:
     name: Testing GraalVM CE ${{ matrix.java-version }}${{ matrix.release-stream }} Cask
     steps:
     - name: Clone repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Check style
       run: brew style Casks/${CASK_NAME}.rb
     - name: Install tap
