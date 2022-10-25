@@ -7,9 +7,11 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        java-version: [11, 17, 8, 16]
+        java-version: [11, 17, 19, 8, 16]
         release-stream: ['', '-lts']
         exclude:
+          - java-version: 19
+            release-stream: '-lts'
           - java-version: 17
             release-stream: '-lts'
           - java-version: 16

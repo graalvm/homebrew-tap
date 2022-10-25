@@ -1,9 +1,9 @@
-cask "graalvm-ce-java17" do
+cask "graalvm-ce-java19" do
   arch arm: "aarch64", intel: "amd64"
 
   version "22.3.0"
-  sha256 arm:   "dfc0c8998b8d00fcca87ef1c866c6e4985fd20b0beba3021f9677f9b166dfaf8",
-         intel: "422cd6abecfb8b40238460c09c42c5a018cb92fab4165de9691be2e3c3d0e8d1"
+  sha256 arm:   "01850d79359cf2cdee72fdf80fa7fe789823fcb4a50fd3d04bdf5b94f5c9fe55",
+         intel: "f3e5e9637bb3df68f59269bfdc98278cf518361384a06a399d784e0a641ebd2c"
 
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/#{cask}-#{version}".freeze
@@ -11,7 +11,7 @@ cask "graalvm-ce-java17" do
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
   url "https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-#{version}/#{cask}-darwin-#{arch}-#{version}.tar.gz"
   appcast "https://github.com/oracle/graal/releases.atom"
-  name "GraalVM Community Edition (Java 17)"
+  name "GraalVM Community Edition (Java 19)"
   homepage "https://www.graalvm.org/"
 
   artifact "#{cask}-#{version}", target: target_dir
@@ -27,7 +27,7 @@ cask "graalvm-ce-java17" do
   end
 
   caveats <<~EOS
-    Installing GraalVM CE (Java 17) in #{jvms_dir} requires root permissions.
+    Installing GraalVM CE (Java 19) in #{jvms_dir} requires root permissions.
     You may be asked to enter your password to proceed.
 
     On macOS Catalina, you may get a warning that "the developer cannot be
