@@ -32,7 +32,7 @@ jobs:
     - name: Install cask, extract its version, and update $PATH
       run: |
         HOMEBREW_NO_AUTO_UPDATE=1 brew install --require-sha graalvm/tap/${CASK_NAME}
-        version=$(brew info $CASK_NAME | head -n 1 | awk '{print $2}')
+        version=$(brew info $CASK_NAME | head -n 1 | awk '{print $3}')
         graalvm_bin_dir="/Library/Java/JavaVirtualMachines/${CASK_NAME}-${version}/Contents/Home/bin"
         echo "${graalvm_bin_dir}" >> $GITHUB_PATH
         export PATH="${graalvm_bin_dir}:${PATH}"
