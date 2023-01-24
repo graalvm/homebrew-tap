@@ -1,9 +1,9 @@
 cask "graalvm-ce-java11" do
   arch arm: "aarch64", intel: "amd64"
 
-  version "22.3.0"
-  sha256 arm:   "c9657e902c2ba674931c3cf233a38c4de3d5186ae5d70452f9df75ac0c4cacff",
-         intel: "b8b39d6a3e3a9ed6348c2776ff071fc64ca90f98999ee846e6ca7e5fdc746a8b"
+  version "22.3.1"
+  sha256 arm:   "c59f32289d92671bea46a34f4227fef484a4aa9eeece159e59a486205aaa6c31",
+         intel: "325afad5f1c4a07a458c95e7c444cff63514a6afa6f2655c12b4f494dccf2228"
 
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/#{cask}-#{version}".freeze
