@@ -32,9 +32,9 @@ cask "graalvm-ce-java11" do
     Installing GraalVM CE (Java 11) in #{jvms_dir} requires root permissions.
     You may be asked to enter your password to proceed.
 
-    On macOS Catalina, you may get a warning that "the developer cannot be
-    verified". This check can be disabled in the "Security & Privacy"
-    preferences pane or by running the following command:
+    On macOS Catalina or later, you may get a warning when you open the GraalVM
+    installation for the first time. This warning can be disabled by running the
+    following command:
       xattr -r -d com.apple.quarantine "#{target_dir}"
 
     To use GraalVM CE, you may want to change your $JAVA_HOME:
