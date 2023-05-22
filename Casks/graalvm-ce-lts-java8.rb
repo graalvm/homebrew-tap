@@ -14,7 +14,7 @@ cask "graalvm-ce-lts-java8" do
   artifact "graalvm-ce-java8-#{version}", target: target_dir
 
   caveats <<~EOS
-    Installing GraalVM CE LTS (Java 8) in #{jvms_dir} requires root permissions.
+    Installing GraalVM CE LTS (Java 8) in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
 
     On macOS Catalina or later, you may get a warning when you open the GraalVM

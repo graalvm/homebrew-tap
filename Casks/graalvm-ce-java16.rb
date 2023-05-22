@@ -28,7 +28,7 @@ cask "graalvm-ce-java16" do
     with several known limitations. Please see
       https://www.graalvm.org/release-notes/known-issues/
 
-    Installing GraalVM CE (Java 16) in #{jvms_dir} requires root permissions.
+    Installing GraalVM CE (Java 16) in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
 
     On macOS Catalina or later, you may get a warning when you open the GraalVM

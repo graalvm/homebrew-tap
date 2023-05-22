@@ -17,7 +17,7 @@ cask "graalvm-ce-java8" do
     !! GraalVM Community Edition releases for MacOS based on JDK 8 are#{" "}
     no longer being built.
 
-    Installing GraalVM CE (Java 8) in #{jvms_dir} requires root permissions.
+    Installing GraalVM CE (Java 8) in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
 
     On macOS Catalina or later, you may get a warning when you open the GraalVM

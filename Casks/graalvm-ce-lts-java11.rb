@@ -26,7 +26,7 @@ cask "graalvm-ce-lts-java11" do
   end
 
   caveats <<~EOS
-    Installing GraalVM CE LTS (Java 11) in #{jvms_dir} requires root permissions.
+    Installing GraalVM CE LTS (Java 11) in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
 
     On macOS Catalina or later, you may get a warning when you open the GraalVM
