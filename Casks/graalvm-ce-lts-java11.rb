@@ -29,7 +29,7 @@ cask "graalvm-ce-lts-java11" do
     Installing GraalVM CE LTS (Java 11) in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
 
-    On macOS Catalina or later, you may get a warning when you open the GraalVM
+    On macOS Catalina or later, you may get a warning when you use the GraalVM
     installation for the first time. This warning can be disabled by running the
     following command:
       xattr -r -d com.apple.quarantine "#{target_dir}"
