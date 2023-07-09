@@ -11,7 +11,6 @@ cask "graalvm-jdk20" do
 
   # download.oracle.com was verified as official when first introduced to the cask
   url "https://download.oracle.com/graalvm/20/archive/graalvm-jdk-#{version}_macos-#{arch}_bin.tar.gz"
-  appcast "https://github.com/oracle/graal/releases.atom"
   name "Oracle GraalVM for JDK 20"
   homepage "https://www.graalvm.org/"
 

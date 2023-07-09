@@ -10,7 +10,6 @@ cask "graalvm-ce-java11" do
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
   url "https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-#{version}/#{cask}-darwin-#{arch}-#{version}.tar.gz"
-  appcast "https://github.com/oracle/graal/releases.atom"
   name "GraalVM Community Edition (Java 11)"
   homepage "https://www.graalvm.org/"
 
