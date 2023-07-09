@@ -7,7 +7,6 @@ cask "graalvm-ce-lts-java8" do
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
   url "https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-#{version}/graalvm-ce-java8-darwin-amd64-#{version}.tar.gz"
-  appcast "https://github.com/oracle/graal/releases.atom"
   name "GraalVM Community Edition, LTS (Java 8)"
   homepage "https://www.graalvm.org/"
 

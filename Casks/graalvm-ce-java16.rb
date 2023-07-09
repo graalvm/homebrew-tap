@@ -7,7 +7,6 @@ cask "graalvm-ce-java16" do
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
   url "https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-#{version}/#{cask}-darwin-amd64-#{version}.tar.gz"
-  appcast "https://github.com/oracle/graal/releases.atom"
   name "GraalVM Community Edition (Java 16)"
   homepage "https://www.graalvm.org/"
 

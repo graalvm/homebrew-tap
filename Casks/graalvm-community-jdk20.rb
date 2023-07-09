@@ -11,7 +11,6 @@ cask "graalvm-community-jdk20" do
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
   url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}/graalvm-community-jdk-#{version}_macos-#{arch}_bin.tar.gz"
-  appcast "https://github.com/oracle/graal/releases.atom"
   name "GraalVM Community Edition for JDK 20"
   homepage "https://www.graalvm.org/"
 
