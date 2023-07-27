@@ -1,9 +1,9 @@
 cask "graalvm-community-jdk20" do
   arch arm: "aarch64", intel: "x64"
 
-  version "20.0.1"
-  sha256 arm:   "be18d18f1fb805a0a3185c3eb6f08d6f7c93172025d8c8bd16c2a70b5105e28c",
-         intel: "0baffa8076049915c93e97f61ea9528959c6d30e9f03943c71a7b995fc73e36d"
+  version "20.0.2"
+  sha256 arm:   "96e2227c4319ecb5eed755f8abb1411a56f51dd8f30e9770127bcd1cce2cd644",
+         intel: "5e57fffa27282f27976a07d27611256ea4219f02756612fe500a5ff80ed5fc2a"
 
   installation_dir = "graalvm-community-openjdk-#{version}+9.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
