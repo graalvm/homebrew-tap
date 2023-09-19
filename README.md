@@ -3,13 +3,15 @@
 Run one of the following commands to install GraalVM Community Edition with [Homebrew]:
 
 ```bash
-# Current Oracle GraalVM releases
-brew install --cask graalvm/tap/graalvm-jdk17
+# Oracle GraalVM releases
+brew install --cask graalvm/tap/graalvm-jdk21
 brew install --cask graalvm/tap/graalvm-jdk20
+brew install --cask graalvm/tap/graalvm-jdk17
 
-# Current GraalVM CE releases
-brew install --cask graalvm/tap/graalvm-community-jdk17
+# GraalVM CE releases
+brew install --cask graalvm/tap/graalvm-community-jdk21
 brew install --cask graalvm/tap/graalvm-community-jdk20
+brew install --cask graalvm/tap/graalvm-community-jdk17
 
 # Older GraalVM releases
 brew install --cask graalvm/tap/graalvm-ce-java17
