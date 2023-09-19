@@ -14,7 +14,7 @@ jobs:
     name: Test graalvm${{ matrix.distribution }}-jdk${{ matrix.java-version }}.rb
     steps:
     - name: Clone repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Check style
       run: brew style Casks/${CASK_NAME}.rb
@@ -54,7 +54,7 @@ jobs:
     name: Test graalvm-ce${{ matrix.release-stream }}-java${{ matrix.java-version }}.rb
     steps:
     - name: Clone repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Check style
       run: brew style Casks/${CASK_NAME}.rb
