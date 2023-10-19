@@ -25,7 +25,7 @@ jobs:
     - name: Validate installation
       run: |
         version=$(brew info --cask Casks/$CASK_NAME.rb | head -n 1 | awk '{print $3}')
-        graalvm_dir=$(find /Library/Java/JavaVirtualMachines/ -maxdepth 1 -type d -name "graalvm-*${version}*")
+        graalvm_dir=$(find /Library/Java/JavaVirtualMachines/ -maxdepth 1 -type d -name "graalvm-*-${{ matrix.java-version }}")
         export PATH="${graalvm_dir}/Contents/Home/bin:${PATH}"
         echo "${PATH}"
         which java

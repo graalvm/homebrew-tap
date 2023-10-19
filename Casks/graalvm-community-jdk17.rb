@@ -7,7 +7,7 @@ cask "graalvm-community-jdk17" do
 
   installation_dir = "graalvm-community-openjdk-#{version}+7.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
-  target_dir = "#{jvms_dir}/#{installation_dir}".freeze
+  target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
   url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}/graalvm-community-jdk-#{version}_macos-#{arch}_bin.tar.gz"

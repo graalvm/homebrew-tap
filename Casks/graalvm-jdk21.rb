@@ -7,7 +7,7 @@ cask "graalvm-jdk21" do
 
   installation_dir = "graalvm-jdk-#{version}+12.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
-  target_dir = "#{jvms_dir}/#{installation_dir}".freeze
+  target_dir = "#{jvms_dir}/graalvm-jdk-#{version.split(".").first}".freeze
 
   # download.oracle.com was verified as official when first introduced to the cask
   url "https://download.oracle.com/graalvm/21/archive/graalvm-jdk-#{version}_macos-#{arch}_bin.tar.gz"
