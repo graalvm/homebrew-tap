@@ -5,7 +5,7 @@ cask "graalvm-community-jdk17" do
   sha256 arm:   "3eccc4ffda01818172b7fc7cdf4379bc62ed7129ee30ca854c04da67057249c9",
          intel: "543dd286d99c04788847ef6366f794c059a69e77added577916186371e206e33"
 
-  installation_dir = "graalvm-community-openjdk-#{version}+11.1".freeze
+  installation_dir = "graalvm-community-openjdk-#{version}+9.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
