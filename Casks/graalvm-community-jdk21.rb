@@ -10,7 +10,7 @@ cask "graalvm-community-jdk21" do
   target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
-  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}.0.0/graalvm-community-jdk-#{version}.0.0_macos-#{arch}_bin.tar.gz"
+  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}/graalvm-community-jdk-#{version}_macos-#{arch}_bin.tar.gz"
   name "GraalVM Community Edition for JDK 21"
   homepage "https://www.graalvm.org/"
 
