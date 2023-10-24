@@ -1,11 +1,11 @@
 cask "graalvm-community-jdk17" do
   arch arm: "aarch64", intel: "x64"
 
-  version "17.0.8"
-  sha256 arm:   "89209bbf8346d8dd0847d431bd8654db7d4ff634745207f20af2045c4869fb49",
-         intel: "cf4bb646018da8bf93f67e5cdae0f583b276d278d0b667d779a68d11d3b6873d"
+  version "17.0.9"
+  sha256 arm:   "3eccc4ffda01818172b7fc7cdf4379bc62ed7129ee30ca854c04da67057249c9",
+         intel: "543dd286d99c04788847ef6366f794c059a69e77added577916186371e206e33"
 
-  installation_dir = "graalvm-community-openjdk-#{version}+7.1".freeze
+  installation_dir = "graalvm-community-openjdk-#{version}+11.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
