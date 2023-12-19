@@ -1,0 +1,76 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        java-version: [17, 20, 21]
+        distribution: ['', '-community']
+    env:
+      CASK_NAME: 'graalvm${{ matrix.distribution }}-jdk${{ matrix.java-version }}'
+    name: Test graalvm${{ matrix.distribution }}-jdk${{ matrix.java-version }}.rb
+    steps:
+    - name: Clone repository
+      uses: actions/checkout@v4
+
+    - name: Check style
+      run: brew style Casks/${CASK_NAME}.rb
+
+    - name: Install cask
+      run: brew reinstall --cask --require-sha Casks/${CASK_NAME}.rb
+
+    - name: Validate installation
+      run: |
+        version=$(brew info --cask Casks/$CASK_NAME.rb | head -n 1 | awk '{print $3}')
+        graalvm_dir=$(find /Library/Java/JavaVirtualMachines/ -maxdepth 1 -type d -name "graalvm-*-${{ matrix.java-version }}")
+        export PATH="${graalvm_dir}/Contents/Home/bin:${PATH}"
+        echo "${PATH}"
+        which java
+        # Ensure the expected `java` version is installed
+        java -version
+        test ! -z "$(java -version 2>&1 | grep $version)"
+        # Ensure GraalVM is picked up by `java_home`
+        /usr/libexec/java_home
+        /usr/libexec/java_home -V 2>&1 | grep "GraalVM"
+
+  build-ce:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        java-version: [11, 17, 19, 8, 16]
+        release-stream: ['', '-lts']
+        exclude:
+          - java-version: 19
+            release-stream: '-lts'
+          - java-version: 17
+            release-stream: '-lts'
+          - java-version: 16
+            release-stream: '-lts'
+    env:
+      CASK_NAME: 'graalvm-ce${{ matrix.release-stream }}-java${{ matrix.java-version }}'
+    name: Test graalvm-ce${{ matrix.release-stream }}-java${{ matrix.java-version }}.rb
+    steps:
+    - name: Clone repository
+      uses: actions/checkout@v4
+
+    - name: Check style
+      run: brew style Casks/${CASK_NAME}.rb
+
+    - name: Install cask
+      run: brew reinstall --cask --require-sha Casks/${CASK_NAME}.rb
+
+    - name: Validate installation
+      run: |
+        version=$(brew info --cask Casks/$CASK_NAME.rb | head -n 1 | awk '{print $3}')
+        export PATH="/Library/Java/JavaVirtualMachines/${CASK_NAME}-${version}/Contents/Home/bin:${PATH}"
+        echo "${PATH}"
+        which java
+        # Ensure the expected `java` version is installed
+        java -version
+        test ! -z "$(java -version 2>&1 | grep $version)"
+        # Ensure GraalVM is picked up by `java_home`
+        /usr/libexec/java_home
+        /usr/libexec/java_home -V 2>&1 | grep "GraalVM CE"
