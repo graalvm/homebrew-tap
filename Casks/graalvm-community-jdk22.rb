@@ -1,7 +1,7 @@
 cask "graalvm-community-jdk22" do
   arch arm: "aarch64", intel: "x64"
 
-  version "22.0.0"
+  version "22"
   sha256 arm:   "87b111900c5f78f919bb55103978d3b9ff44789140bb20be1c59abd23871cc86",
          intel: "691b71450bcfea19eb5a3564f7a159072f9bd51a7a901e3a4775127da24a10d1"
 
@@ -10,7 +10,7 @@ cask "graalvm-community-jdk22" do
   target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
-  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}/graalvm-community-jdk-#{version}_macos-#{arch}_bin.tar.gz"
+  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}.0.0/graalvm-community-jdk-#{version}.0.0_macos-#{arch}_bin.tar.gz"
   name "GraalVM Community Edition for JDK 22"
   homepage "https://www.graalvm.org/"
 
