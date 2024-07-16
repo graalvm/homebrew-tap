@@ -1,11 +1,11 @@
 cask "graalvm-community-jdk22" do
   arch arm: "aarch64", intel: "x64"
 
-  version "22.0.1"
-  sha256 arm:   "b96a16359c800374af5fbd3cb685aaa91cfc590ea4be35538c24b37e12c769c0",
-         intel: "553c2dff3febd45f917e45f4dd620c194d8225bc28d13f5545ddffea9eeb30f8"
+  version "22.0.2"
+  sha256 arm:   "883dfd503f2bbf9cd824564763c49cafa6b3c5e9d8c024093962131b4ef5101f",
+         intel: "0512dda1b1ea569b2a6c3dc6671e102a4d5457e3b2dfa47bf656bd32893d12e4"
 
-  installation_dir = "graalvm-community-openjdk-#{version}+8.1".freeze
+  installation_dir = "graalvm-community-openjdk-#{version}+9.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
@@ -29,11 +29,6 @@ cask "graalvm-community-jdk22" do
   caveats <<~EOS
     Installing GraalVM CE for JDK 22 in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
-
-    On macOS Catalina or later, you may get a warning when you use the GraalVM
-    installation for the first time. This warning can be disabled by running the
-    following command:
-      xattr -r -d com.apple.quarantine "#{target_dir}"
 
     To use GraalVM, you may want to change your $JAVA_HOME:
       export JAVA_HOME="#{target_dir}/Contents/Home"
