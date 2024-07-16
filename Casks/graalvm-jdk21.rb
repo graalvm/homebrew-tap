@@ -1,11 +1,11 @@
 cask "graalvm-jdk21" do
   arch arm: "aarch64", intel: "x64"
 
-  version "21.0.3"
-  sha256 arm:   "501b3163e663f154bd816fa889810f94004530e6fcef62e6e87554247d0952c0",
-         intel: "6d29cacd2e3b46ee33d573757f1098fec5b487a89a98f68a5315d45a4f89a1bb"
+  version "21.0.4"
+  sha256 arm:   "1a38609765bb7f985783b438c0488dca1a03ee2d418c2d94a1aaabd6ea9960be",
+         intel: "4cfe4037fbb4190c27899e13ebdee8a034309f7a96e9e20f73fc94b28783a98d"
 
-  installation_dir = "graalvm-jdk-#{version}+7.1".freeze
+  installation_dir = "graalvm-jdk-#{version}+8.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-jdk-#{version.split(".").first}".freeze
 
@@ -29,11 +29,6 @@ cask "graalvm-jdk21" do
   caveats <<~EOS
     Installing Oracle GraalVM for JDK 21 in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
-
-    On macOS Catalina or later, you may get a warning when you use the GraalVM
-    installation for the first time. This warning can be disabled by running the
-    following command:
-      xattr -r -d com.apple.quarantine "#{target_dir}"
 
     To use GraalVM, you may want to change your $JAVA_HOME:
       export JAVA_HOME="#{target_dir}/Contents/Home"

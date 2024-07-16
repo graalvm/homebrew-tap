@@ -1,11 +1,11 @@
 cask "graalvm-jdk17" do
   arch arm: "aarch64", intel: "x64"
 
-  version "17.0.11"
-  sha256 arm:   "a3804609f9c3db90156301b53a5fb678354282207e9a4e08d490488f21132bab",
-         intel: "abd6fa23985256debb82463352db090d28b86cf124ce9928782e59cb17ea2517"
+  version "17.0.12"
+  sha256 arm:   "4cdfdc6c9395f6773efcd191b6605f1b7c8e1b78ab900ab5cff34720a3feffc5",
+         intel: "3ecac1471f3fa95a56c5b75c65db9e60ac4551f56eda09eb9da95e6049ea77d7"
 
-  installation_dir = "graalvm-jdk-#{version}+7.1".freeze
+  installation_dir = "graalvm-jdk-#{version}+8.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-jdk-#{version.split(".").first}".freeze
 
@@ -29,11 +29,6 @@ cask "graalvm-jdk17" do
   caveats <<~EOS
     Installing Oracle GraalVM for JDK 17 in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
-
-    On macOS Catalina or later, you may get a warning when you use the GraalVM
-    installation for the first time. This warning can be disabled by running the
-    following command:
-      xattr -r -d com.apple.quarantine "#{target_dir}"
 
     To use GraalVM, you may want to change your $JAVA_HOME:
       export JAVA_HOME="#{target_dir}/Contents/Home"
