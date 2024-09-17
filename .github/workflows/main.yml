@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-14, macos-12] # M1 and Intel
-        java-version: [17, 20, 21, 22]
+        java-version: [17, 21, 23]
         distribution: ['', '-community']
     env:
       CASK_NAME: 'graalvm${{ matrix.distribution }}-jdk${{ matrix.java-version }}'
