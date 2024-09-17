@@ -1,16 +1,16 @@
 cask "graalvm-jdk23" do
   arch arm: "aarch64", intel: "x64"
 
-  version "23.0.0"
+  version "23"
   sha256 arm:   "63290bf6242836ac46ca4c8c4ad048e4482fdb3f8276b9689088f059be430687",
          intel: "d516ea854e361a821c7679d127ff7126c254b8c43c99e571e203df218df2764b"
 
-  installation_dir = "graalvm-jdk-#{version.split(".").first}+37.1".freeze
+  installation_dir = "graalvm-jdk-#{version}+37.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-jdk-#{version.split(".").first}".freeze
 
   # download.oracle.com was verified as official when first introduced to the cask
-  url "https://download.oracle.com/graalvm/23/archive/graalvm-jdk-#{version.split(".").first}_macos-#{arch}_bin.tar.gz"
+  url "https://download.oracle.com/graalvm/23/archive/graalvm-jdk-#{version}_macos-#{arch}_bin.tar.gz"
   name "Oracle GraalVM for JDK 23"
   homepage "https://www.graalvm.org/"
 

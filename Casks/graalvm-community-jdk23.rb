@@ -1,16 +1,16 @@
 cask "graalvm-community-jdk23" do
   arch arm: "aarch64", intel: "x64"
 
-  version "23.0.0"
+  version "23"
   sha256 arm:   "cda587f6d15134dc237fbb1111c7e339c8a0b2f4c1a4817a436c7c15d8ba2a9b",
          intel: "1338b838e5c845688643ed9e91bf2a0236e4d53bf1dc9cb4f693bde0409d4daa"
 
-  installation_dir = "graalvm-community-openjdk-#{version.split(".").first}+37.1".freeze
+  installation_dir = "graalvm-community-openjdk-#{version}+37.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
-  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}/graalvm-community-jdk-#{version}_macos-#{arch}_bin.tar.gz"
+  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}.0.0/graalvm-community-jdk-#{version}.0.0_macos-#{arch}_bin.tar.gz"
   name "GraalVM Community Edition for JDK 23"
   homepage "https://www.graalvm.org/"
 
