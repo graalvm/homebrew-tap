@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-14, macos-12] # M1 and Intel
+        os: [macos-14, macos-13] # M1 and Intel
         java-version: [17, 21, 23]
         distribution: ['', '-community']
     env:
