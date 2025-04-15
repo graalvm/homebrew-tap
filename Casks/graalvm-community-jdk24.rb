@@ -1,16 +1,16 @@
 cask "graalvm-community-jdk24" do
   arch arm: "aarch64", intel: "x64"
 
-  version "24"
-  sha256 arm:   "dfe287cd5764686c56d42f365594dba883c9f3ff1b54b69565727a6811d1dc80",
-         intel: "9a125e5228c63675c178e774ec3b09a8ec905561711c48ad3aaf71b406a8828c"
+  version "24.0.1"
+  sha256 arm:   "0e18661fb350d76c7d4905484b72b90ecda38a0910b3a9a2856573086678cead",
+         intel: "452615d870ac9a6bf0fac09ff859d6c1a78e14d6f2a1937d610e7c6e470359e2"
 
-  installation_dir = "graalvm-community-openjdk-#{version}+36.1".freeze
+  installation_dir = "graalvm-community-openjdk-#{version}+9.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
-  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}.0.0/graalvm-community-jdk-#{version}.0.0_macos-#{arch}_bin.tar.gz"
+  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}/graalvm-community-jdk-#{version}_macos-#{arch}_bin.tar.gz"
   name "GraalVM Community Edition for JDK 24"
   homepage "https://www.graalvm.org/"
 
