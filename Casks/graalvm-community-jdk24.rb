@@ -3,7 +3,7 @@ cask "graalvm-community-jdk24" do
 
   version "24.0.2"
   sha256 arm:   "1f5068d07746fe472963189692922a1db58115b6ceaa5d9105a7433b81c6d587",
-         intel: "c59ed856d18dab156c54b2312e24668406050496670842864180ced31a1a76d3%"
+         intel: "c59ed856d18dab156c54b2312e24668406050496670842864180ced31a1a76d3"
 
   installation_dir = "graalvm-community-openjdk-#{version}+11.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
