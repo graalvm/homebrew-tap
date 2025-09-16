@@ -12,18 +12,31 @@ jobs:
         distribution: ['', '-community']
     env:
       CASK_NAME: 'graalvm${{ matrix.distribution }}-jdk${{ matrix.java-version }}'
-      HOMEBREW_FORBID_PACKAGES_FROM_PATHS: ""  
-      HOMEBREW_NO_INSTALL_FROM_API: 1
     name: Test graalvm${{ matrix.distribution }}-jdk${{ matrix.java-version }}.rb on ${{ matrix.os }}
     steps:
     - name: Clone repository
       uses: actions/checkout@v4
 
+    - name: Debug environment
+      run: |
+        echo "CASK_NAME: ${CASK_NAME}"
+        echo "Working directory: $(pwd)"
+        echo "Cask file exists: $(test -f Casks/${CASK_NAME}.rb && echo 'YES' || echo 'NO')"
+        echo "Cask file path: $(pwd)/Casks/${CASK_NAME}.rb"
+        ls -la Casks/${CASK_NAME}.rb || echo "File not found"
+        echo "--- Homebrew Config ---"
+        brew config
+        echo "--- Environment Variables ---"
+        env | grep HOMEBREW
+
     - name: Check style
       run: brew style Casks/${CASK_NAME}.rb
 
     - name: Install cask
-      run: brew reinstall --cask --require-sha Casks/${CASK_NAME}.rb
+      run: |
+        echo "About to install: Casks/${CASK_NAME}.rb"
+        echo "Full command: brew reinstall --cask --require-sha Casks/${CASK_NAME}.rb"
+        brew reinstall --cask --require-sha Casks/${CASK_NAME}.rb
 
     - name: Validate installation
       run: |
@@ -54,8 +67,6 @@ jobs:
             release-stream: '-lts'
     env:
       CASK_NAME: 'graalvm-ce${{ matrix.release-stream }}-java${{ matrix.java-version }}'
-      HOMEBREW_FORBID_PACKAGES_FROM_PATHS: ""  
-      HOMEBREW_NO_INSTALL_FROM_API: 1
     name: Test graalvm-ce${{ matrix.release-stream }}-java${{ matrix.java-version }}.rb
     steps:
     - name: Clone repository
