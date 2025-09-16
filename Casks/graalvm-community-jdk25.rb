@@ -1,7 +1,7 @@
 cask "graalvm-community-jdk25" do
   arch arm: "aarch64", intel: "x64"
 
-  version "25.0.0"
+  version "25"
   sha256 arm:   "c446d5aaeda98660a4c14049d299e9fba72105a007df89f19d27cf3979d37158",
          intel: "04278cf867d040e29dc71dd7727793f0ea67eb72adce8a35d04b87b57906778d"
 
@@ -10,7 +10,7 @@ cask "graalvm-community-jdk25" do
   target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
-  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}/graalvm-community-jdk-#{version}_macos-#{arch}_bin.tar.gz"
+  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}.0.0/graalvm-community-jdk-#{version}.0.0_macos-#{arch}_bin.tar.gz"
   name "GraalVM Community Edition 25"
   homepage "https://www.graalvm.org/"
 
