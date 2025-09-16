@@ -8,10 +8,12 @@ jobs:
     strategy:
       matrix:
         os: [macos-14, macos-13] # M1 and Intel
-        java-version: [17, 21, 24]
+        java-version: [17, 21, 25]
         distribution: ['', '-community']
     env:
       CASK_NAME: 'graalvm${{ matrix.distribution }}-jdk${{ matrix.java-version }}'
+      HOMEBREW_DEVELOPER: 1
+      HOMEBREW_NO_INSTALL_FROM_API: 1
     name: Test graalvm${{ matrix.distribution }}-jdk${{ matrix.java-version }}.rb on ${{ matrix.os }}
     steps:
     - name: Clone repository
@@ -52,6 +54,8 @@ jobs:
             release-stream: '-lts'
     env:
       CASK_NAME: 'graalvm-ce${{ matrix.release-stream }}-java${{ matrix.java-version }}'
+      HOMEBREW_DEVELOPER: 1
+      HOMEBREW_NO_INSTALL_FROM_API: 1
     name: Test graalvm-ce${{ matrix.release-stream }}-java${{ matrix.java-version }}.rb
     steps:
     - name: Clone repository
