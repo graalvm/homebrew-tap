@@ -12,7 +12,7 @@ jobs:
         distribution: ['', '-community']
     env:
       CASK_NAME: 'graalvm${{ matrix.distribution }}-jdk${{ matrix.java-version }}'
-      HOMEBREW_FORBID_PACKAGES_FROM_PATHS: ""  
+      HOMEBREW_DEVELOPER: 1
       HOMEBREW_NO_INSTALL_FROM_API: 1
     name: Test graalvm${{ matrix.distribution }}-jdk${{ matrix.java-version }}.rb on ${{ matrix.os }}
     steps:
@@ -38,6 +38,7 @@ jobs:
       run: |
         echo "About to install: Casks/${CASK_NAME}.rb"
         echo "Full command: brew reinstall --cask --require-sha Casks/${CASK_NAME}.rb"
+        unset HOMEBREW_FORBID_PACKAGES_FROM_PATHS
         brew reinstall --cask --require-sha Casks/${CASK_NAME}.rb
 
     - name: Validate installation
@@ -69,7 +70,7 @@ jobs:
             release-stream: '-lts'
     env:
       CASK_NAME: 'graalvm-ce${{ matrix.release-stream }}-java${{ matrix.java-version }}'
-      HOMEBREW_FORBID_PACKAGES_FROM_PATHS: ""  
+      HOMEBREW_DEVELOPER: 1
       HOMEBREW_NO_INSTALL_FROM_API: 1
     name: Test graalvm-ce${{ matrix.release-stream }}-java${{ matrix.java-version }}.rb
     steps:
@@ -94,7 +95,9 @@ jobs:
     - name: Install cask
       run: |
         echo "About to install: Casks/${CASK_NAME}.rb"
-        echo "Full command: brew reinstall --cask --require-sha Casks/${CASK_NAME}.rb"          
+        unset HOMEBREW_FORBID_PACKAGES_FROM_PATHS
+        echo "Full command: brew reinstall --cask --require-sha Casks/${CASK_NAME}.rb"    
+        brew reinstall --cask --require-sha Casks/${CASK_NAME}.rb      
 
     - name: Validate installation
       run: |
