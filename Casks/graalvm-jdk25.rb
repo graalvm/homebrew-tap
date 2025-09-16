@@ -1,7 +1,7 @@
 cask "graalvm-jdk25" do
   arch arm: "aarch64", intel: "x64"
 
-  version "25.0.0"
+  version "25"
   sha256 arm:   "6e77f17b01089dfdb0c54cce8aa936847e2a019e0110418813b49b3bd974dc90",
          intel: "f99e3eea4808a0b73b559e28c4646cf091df12d6a4c065fef34664ab17299137"
 
