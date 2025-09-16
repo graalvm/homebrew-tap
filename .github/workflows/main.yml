@@ -62,8 +62,8 @@ jobs:
 
     - name: Install cask
       env:
-        HOMEBREW_FORBID_PACKAGES_FROM_PATHS: ""  
-        HOMEBREW_NO_INSTALL_FROM_API: 1         
+        HOMEBREW_DEVELOPER: 1                   
+        HOMEBREW_NO_INSTALL_FROM_API: 1                
       run: brew reinstall --cask --require-sha Casks/${CASK_NAME}.rb
 
     - name: Validate installation
