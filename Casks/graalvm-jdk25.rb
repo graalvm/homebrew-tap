@@ -1,16 +1,13 @@
 cask "graalvm-jdk25" do
-  arch arm: "aarch64", intel: "x64"
+  version "25.0.2"
+  sha256 "48584aa5ae0f4df088d63da7bfdf415858ea3407385fb4f559bc4d7e1b300151"
 
-  version "25.0.1"
-  sha256 arm:   "19dfd49ad112e6e6c2bdedc507c6859bf21294fa4c164f1be670d469c65b7993",
-         intel: "a762ca1d9a163e32790b9286f3af4c16369729ff27999d8dbab60d7be16cff2f"
-
-  installation_dir = "graalvm-jdk-#{version}+8.1".freeze
+  installation_dir = "graalvm-jdk-#{version}+10.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-jdk-#{version.split(".").first}".freeze
 
   # download.oracle.com was verified as official when first introduced to the cask
-  url "https://download.oracle.com/graalvm/25/archive/graalvm-jdk-#{version}_macos-#{arch}_bin.tar.gz"
+  url "https://download.oracle.com/graalvm/25/archive/graalvm-jdk-#{version}_macos-aarch64_bin.tar.gz"
   name "Oracle GraalVM 25"
   homepage "https://www.graalvm.org/"
 

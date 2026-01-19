@@ -1,11 +1,9 @@
 cask "graalvm-jdk21" do
-  arch arm: "aarch64", intel: "x64"
+  arch arm: "aarch64"
+  version "21.0.10"
+  sha256 arm: "9e5d8c3b23b793ac3cc92462454edb9465208cb6eee18a0066971748ef5ce197"
 
-  version "21.0.9"
-  sha256 arm:   "cda0e0ee16fe06ba0a3203ae77a680c6e696b592b697851e161ae92b66c683a6",
-         intel: "aaf06b193ea1a05662d4a5a05e899eb51f8881eee4319db044707e79dcabbb32"
-
-  installation_dir = "graalvm-jdk-#{version}+7.1".freeze
+  installation_dir = "graalvm-jdk-#{version}+8.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-jdk-#{version.split(".").first}".freeze
 
