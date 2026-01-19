@@ -23,7 +23,7 @@ cask "graalvm-community-jdk25" do
     system_command "/bin/mkdir", args: ["-p", macos_dir], sudo: true
     system_command "/bin/ln", args: ["-s", "-f", libjli_path, libjli_symlink_path], sudo: true
   end
-  
+
   caveats <<~EOS
     Installing GraalVM CE 25 in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
