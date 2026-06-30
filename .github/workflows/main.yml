@@ -28,14 +28,14 @@ jobs:
 
     - name: Validate installation
       run: |
-        version=$(brew info --cask Casks/$CASK_NAME.rb | head -n 1 | awk '{print $3}')
-        graalvm_dir=$(find /Library/Java/JavaVirtualMachines/ -maxdepth 1 -type d -name "graalvm-*-${{ matrix.java-version }}")
+        graalvm_dir=$(find /Library/Java/JavaVirtualMachines/ -maxdepth 1 -type d -name "graalvm-*-${{ matrix.java-version }}" | head -n 1)
         export PATH="${graalvm_dir}/Contents/Home/bin:${PATH}"
         echo "${PATH}"
         which java
         # Ensure the expected `java` version is installed
-        java -version
-        test ! -z "$(java -version 2>&1 | grep $version)"
+        java -version 2>&1 | tee java-version.txt
+        grep 'version "${{ matrix.java-version }}' java-version.txt
+        grep "GraalVM" java-version.txt
         # Ensure GraalVM is picked up by `java_home`
         /usr/libexec/java_home
         /usr/libexec/java_home -V 2>&1 | grep "GraalVM"
