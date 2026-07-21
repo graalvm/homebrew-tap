@@ -38,7 +38,7 @@ jobs:
         java -version 2>&1 | tee java-version.txt
         grep "version \"${runtime_version}" java-version.txt
         grep "GraalVM" java-version.txt
-        # Ensure GraalVM is picked up by `java_home`
-        java_home=$(/usr/libexec/java_home)
-        echo "${java_home}"
-        test "${java_home}" = "${graalvm_dir}/Contents/Home"
+        # Ensure GraalVM is registered with `java_home`. The runner may select a
+        # newer preinstalled JDK as its default, so check the full inventory.
+        /usr/libexec/java_home -V 2>&1 | tee java-homes.txt
+        grep -F "${graalvm_dir}/Contents/Home" java-homes.txt
