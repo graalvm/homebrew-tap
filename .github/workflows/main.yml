@@ -30,7 +30,7 @@ jobs:
     - name: Validate installation
       run: |
         runtime_version="${JAVA_VERSION%i}"
-        graalvm_dir=$(find /Library/Java/JavaVirtualMachines/ -maxdepth 1 -type d -name "graalvm-*-${runtime_version}" | head -n 1)
+        graalvm_dir=$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -type d -name "graalvm-*-${runtime_version}" | head -n 1)
         export PATH="${graalvm_dir}/Contents/Home/bin:${PATH}"
         echo "${PATH}"
         which java
@@ -39,5 +39,6 @@ jobs:
         grep "version \"${runtime_version}" java-version.txt
         grep "GraalVM" java-version.txt
         # Ensure GraalVM is picked up by `java_home`
-        /usr/libexec/java_home
-        /usr/libexec/java_home -V 2>&1 | grep "GraalVM"
+        java_home=$(/usr/libexec/java_home)
+        echo "${java_home}"
+        test "${java_home}" = "${graalvm_dir}/Contents/Home"
