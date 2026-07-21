@@ -10,7 +10,7 @@ cask "graalvm-jdk25i1" do
 
   # download.oracle.com was verified as official when first introduced to the cask
   url "https://download.oracle.com/graalvm/25i1/archive/graalvm-jdk-25i1-25.0.3_macos-#{arch}_bin.tar.gz"
-  name "Oracle GraalVM 25i1"
+  name "Oracle GraalVM 25i"
   homepage "https://www.graalvm.org/"
 
   artifact installation_dir, target: target_dir
