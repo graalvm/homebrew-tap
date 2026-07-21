@@ -1,16 +1,16 @@
-cask "graalvm-community-jdk25i" do
+cask "graalvm-community-jdk25" do
   arch arm: "aarch64"
 
-  version "25.1.3"
-  sha256 arm: "b41cdde27691a0e04a1f2b0660624bc37e59c738e536888860c4c9f65a4a9a3b"
+  version "25.0.2"
+  sha256 arm: "50201fb8e8e653e7a253d955877a6b6ad634b42e60c84f45df7e1bb51361635f"
 
-  installation_dir = "graalvm-community-#{version}+9.1".freeze
+  installation_dir = "graalvm-community-openjdk-#{version}+10.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
-  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-#{version}/graalvm-community-jdk-25i1-25.0.3_macos-#{arch}_bin.tar.gz"
-  name "GraalVM Community Edition 25i"
+  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-#{version}/graalvm-community-jdk-#{version}_macos-#{arch}_bin.tar.gz"
+  name "GraalVM Community Edition 25"
   homepage "https://www.graalvm.org/"
 
   artifact installation_dir, target: target_dir
@@ -26,7 +26,7 @@ cask "graalvm-community-jdk25i" do
   end
 
   caveats <<~EOS
-    Installing GraalVM CE 25i in #{jvms_dir} requires root permission.
+    Installing GraalVM CE 25 in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
 
     To use GraalVM, you may want to change your $JAVA_HOME:

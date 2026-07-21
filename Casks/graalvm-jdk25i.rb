@@ -26,7 +26,7 @@ cask "graalvm-jdk25i" do
   end
 
   caveats <<~EOS
-    Installing Oracle GraalVM 25i1 in #{jvms_dir} requires root permission.
+    Installing Oracle GraalVM 25i in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
 
     To use GraalVM, you may want to change your $JAVA_HOME:
