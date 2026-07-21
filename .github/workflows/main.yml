@@ -9,10 +9,11 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-14]
-        java-version: [17, 21, 25]
+        java-version: [17, 21, 25, '25i']
         distribution: ['', '-community']
     env:
       CASK_NAME: 'graalvm${{ matrix.distribution }}-jdk${{ matrix.java-version }}'
+      JAVA_VERSION: '${{ matrix.java-version }}'
       HOMEBREW_DEVELOPER: 1
       HOMEBREW_NO_INSTALL_FROM_API: 1
     name: Test graalvm${{ matrix.distribution }}-jdk${{ matrix.java-version }}.rb on ${{ matrix.os }}
@@ -28,14 +29,16 @@ jobs:
 
     - name: Validate installation
       run: |
-        graalvm_dir=$(find /Library/Java/JavaVirtualMachines/ -maxdepth 1 -type d -name "graalvm-*-${{ matrix.java-version }}" | head -n 1)
+        runtime_version="${JAVA_VERSION%i}"
+        graalvm_dir=$(find /Library/Java/JavaVirtualMachines -maxdepth 1 -type d -name "graalvm-*-${runtime_version}" | head -n 1)
         export PATH="${graalvm_dir}/Contents/Home/bin:${PATH}"
         echo "${PATH}"
         which java
         # Ensure the expected `java` version is installed
         java -version 2>&1 | tee java-version.txt
-        grep 'version "${{ matrix.java-version }}' java-version.txt
+        grep "version \"${runtime_version}" java-version.txt
         grep "GraalVM" java-version.txt
-        # Ensure GraalVM is picked up by `java_home`
-        /usr/libexec/java_home
-        /usr/libexec/java_home -V 2>&1 | grep "GraalVM"
+        # Ensure GraalVM is registered with `java_home`. The runner may select a
+        # newer preinstalled JDK as its default, so check the full inventory.
+        /usr/libexec/java_home -V 2>&1 | tee java-homes.txt
+        grep -F "${graalvm_dir}/Contents/Home" java-homes.txt

@@ -1,16 +1,16 @@
-cask "graalvm-jdk25" do
+cask "graalvm-community-jdk25i" do
   arch arm: "aarch64"
 
-  version "25.0.4"
-  sha256 arm: "0b79e23c133facbad2f7aa55a3b76d17bd59d2fa15e2735bb63391ace223fd13"
+  version "25.1.3"
+  sha256 arm: "b41cdde27691a0e04a1f2b0660624bc37e59c738e536888860c4c9f65a4a9a3b"
 
-  installation_dir = "graalvm-jdk-#{version}+7.1".freeze
+  installation_dir = "graalvm-community-#{version}+9.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
-  target_dir = "#{jvms_dir}/graalvm-jdk-#{version.split(".").first}".freeze
+  target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
-  # download.oracle.com was verified as official when first introduced to the cask
-  url "https://download.oracle.com/graalvm/25/archive/graalvm-jdk-#{version}_macos-#{arch}_bin.tar.gz"
-  name "Oracle GraalVM 25"
+  # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
+  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-#{version}/graalvm-community-jdk-25i1-25.0.3_macos-#{arch}_bin.tar.gz"
+  name "GraalVM Community Edition 25i"
   homepage "https://www.graalvm.org/"
 
   artifact installation_dir, target: target_dir
@@ -26,7 +26,7 @@ cask "graalvm-jdk25" do
   end
 
   caveats <<~EOS
-    Installing Oracle GraalVM 25 in #{jvms_dir} requires root permission.
+    Installing GraalVM CE 25i in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
 
     To use GraalVM, you may want to change your $JAVA_HOME:
@@ -35,8 +35,8 @@ cask "graalvm-jdk25" do
     or you may want to add its `bin` directory to your $PATH:
       export PATH="#{target_dir}/Contents/Home/bin:$PATH"
 
-    Oracle GraalVM is licensed under the GraalVM Free Terms and Conditions:
-      https://www.oracle.com/downloads/licenses/graal-free-license.html
+    GraalVM CE is licensed under the GPL 2 with Classpath exception:
+      https://github.com/oracle/graal/blob/master/LICENSE
 
   EOS
 end

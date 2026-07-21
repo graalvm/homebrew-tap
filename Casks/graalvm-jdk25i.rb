@@ -1,16 +1,16 @@
-cask "graalvm-jdk25" do
+cask "graalvm-jdk25i" do
   arch arm: "aarch64"
 
-  version "25.0.4"
-  sha256 arm: "0b79e23c133facbad2f7aa55a3b76d17bd59d2fa15e2735bb63391ace223fd13"
+  version "25.1.3"
+  sha256 arm: "3b694d60985503bf561cd2444fb1a9b697b08fb700d0bb27d12c49adc5d914bb"
 
-  installation_dir = "graalvm-jdk-#{version}+7.1".freeze
+  installation_dir = "graalvm-#{version}+9.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-jdk-#{version.split(".").first}".freeze
 
   # download.oracle.com was verified as official when first introduced to the cask
-  url "https://download.oracle.com/graalvm/25/archive/graalvm-jdk-#{version}_macos-#{arch}_bin.tar.gz"
-  name "Oracle GraalVM 25"
+  url "https://download.oracle.com/graalvm/25i1/archive/graalvm-jdk-25i1-25.0.3_macos-#{arch}_bin.tar.gz"
+  name "Oracle GraalVM 25i"
   homepage "https://www.graalvm.org/"
 
   artifact installation_dir, target: target_dir
@@ -26,7 +26,7 @@ cask "graalvm-jdk25" do
   end
 
   caveats <<~EOS
-    Installing Oracle GraalVM 25 in #{jvms_dir} requires root permission.
+    Installing Oracle GraalVM 25i in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
 
     To use GraalVM, you may want to change your $JAVA_HOME:

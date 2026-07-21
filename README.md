@@ -4,12 +4,14 @@ Run one of the following commands to install GraalVM Community Edition with [Hom
 
 ```bash
 # Oracle GraalVM releases
-brew install --cask graalvm/tap/graalvm-jdk22
+brew install --cask graalvm/tap/graalvm-jdk25i
+brew install --cask graalvm/tap/graalvm-jdk25
 brew install --cask graalvm/tap/graalvm-jdk21
 brew install --cask graalvm/tap/graalvm-jdk17
 
 # GraalVM CE releases
-brew install --cask graalvm/tap/graalvm-community-jdk22
+brew install --cask graalvm/tap/graalvm-community-jdk25i
+brew install --cask graalvm/tap/graalvm-community-jdk25
 brew install --cask graalvm/tap/graalvm-community-jdk21
 brew install --cask graalvm/tap/graalvm-community-jdk17
 
