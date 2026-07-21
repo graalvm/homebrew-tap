@@ -1,4 +1,4 @@
-cask "graalvm-jdk25i1" do
+cask "graalvm-jdk25i" do
   arch arm: "aarch64"
 
   version "25.1.3"
