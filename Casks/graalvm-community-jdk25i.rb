@@ -10,7 +10,7 @@ cask "graalvm-community-jdk25i" do
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
   url "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-#{version}/graalvm-community-jdk-25i1-25.0.3_macos-#{arch}_bin.tar.gz"
-  name "GraalVM Community Edition 25i1"
+  name "GraalVM Community Edition 25i"
   homepage "https://www.graalvm.org/"
 
   artifact installation_dir, target: target_dir
