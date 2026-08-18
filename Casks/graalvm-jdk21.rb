@@ -1,15 +1,15 @@
 cask "graalvm-jdk21" do
   arch arm: "aarch64"
 
-  version "21.0.12"
-  sha256 arm: "a98948c3a1ad037fe2dde5c80b06b214a5f80c120d8fc2453d155508cf677beb"
+  version "21.0.12.1"
+  sha256 arm: "cb86916f79aab52e3d85ca789f1eaf44dacfeeddb88c0e492784d876d14d5391"
 
-  installation_dir = "graalvm-jdk-#{version}+7.1".freeze
+  installation_dir = "graalvm-jdk-#{version}+1.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-jdk-#{version.split(".").first}".freeze
 
   # download.oracle.com was verified as official when first introduced to the cask
-  url "https://download.oracle.com/graalvm/21/archive/graalvm-jdk-#{version}_macos-#{arch}_bin.tar.gz"
+  url "https://gds.oracle.com/download/graal/21/archive/graalvm-jdk-#{version}_macos-#{arch}_bin.tar.gz"
   name "Oracle GraalVM for JDK 21"
   homepage "https://www.graalvm.org/"
 
