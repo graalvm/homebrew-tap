@@ -9,7 +9,7 @@ cask "graalvm-jdk25i" do
   target_dir = "#{jvms_dir}/graalvm-jdk-#{version.split(".").first}".freeze
 
   # download.oracle.com was verified as official when first introduced to the cask
-  url "https://gds.oracle.com/download/graal/25i2/archive/graalvm-jdk-25i3-25.0.4.1_macos-#{arch}_bin.tar.gz"
+  url "https://gds.oracle.com/download/graal/25i3/archive/graalvm-jdk-25i3-25.0.4.1_macos-#{arch}_bin.tar.gz"
   name "Oracle GraalVM 25i"
   homepage "https://www.graalvm.org/"
 
