@@ -15,7 +15,7 @@ cask "graalvm-ce-java11" do
 
   artifact "#{cask}-#{version}", target: target_dir
 
-  postflight do
+  postflight_steps do
     # Ensure GraalVM JDK 11 is listed by `/usr/libexec/java_home -V`.
     macos_dir = "#{target_dir}/Contents/MacOS"
     libjli_filename = "libjli.dylib"

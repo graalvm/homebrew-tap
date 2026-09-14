@@ -15,7 +15,7 @@ cask "graalvm-jdk25" do
 
   artifact installation_dir, target: target_dir
 
-  postflight do
+  postflight_steps do
     # Correct symlink
     macos_dir = "#{target_dir}/Contents/MacOS"
     libjli_filename = "libjli.dylib"

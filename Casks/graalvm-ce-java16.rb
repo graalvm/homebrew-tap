@@ -12,7 +12,7 @@ cask "graalvm-ce-java16" do
 
   artifact "#{cask}-#{version}", target: target_dir
 
-  postflight do
+  postflight_steps do
     # Correct symlink
     macos_dir = "#{target_dir}/Contents/MacOS"
     libjli_filename = "libjli.dylib"
