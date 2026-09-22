@@ -1,15 +1,15 @@
 cask "graalvm-community-jdk25i" do
   arch arm: "aarch64"
 
-  version "25.3.4.1"
-  sha256 arm: "ebfab1d74420f355a459076162012d6835fa6068bd9d2f230f1fcaf7ee0dd923"
+  version "25.4.4.1.1"
+  sha256 arm: "4ec9932aa4aab1afca0ea31982d32d6f956615c61fe21a227b49756b25adda4f"
 
   installation_dir = "graalvm-community-#{version}+1.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
   # github.com/graalvm/graalvm-ce-builds was verified as official when first introduced to the cask
-  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-#{version}/graalvm-community-jdk-25i3-25.0.4.1_macos-#{arch}_bin.tar.gz"
+  url "https://github.com/graalvm/graalvm-ce-builds/releases/download/graal-#{version}/graalvm-community-jdk-25i4-25.0.4.1.1_macos-#{arch}_bin.tar.gz"
   name "GraalVM Community Edition 25i"
   homepage "https://www.graalvm.org/"
 
