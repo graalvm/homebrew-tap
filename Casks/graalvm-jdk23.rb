@@ -16,14 +16,13 @@ cask "graalvm-jdk23" do
 
   artifact installation_dir, target: target_dir
 
-  postflight do
+  postflight_steps do
     # Correct symlink
-    macos_dir = "#{target_dir}/Contents/MacOS"
-    libjli_filename = "libjli.dylib"
-    libjli_path = "#{target_dir}/Contents/Home/lib/#{libjli_filename}"
-    libjli_symlink_path = "#{macos_dir}/#{libjli_filename}"
-    system_command "/bin/mkdir", args: ["-p", macos_dir], sudo: true
-    system_command "/bin/ln", args: ["-s", "-f", libjli_path, libjli_symlink_path], sudo: true
+    run "/bin/mkdir", args: ["-p", "{{target_dir}}/Contents/MacOS"], sudo: true
+    run "/bin/ln",
+        args: ["-s", "-f", "{{target_dir}}/Contents/Home/lib/libjli.dylib",
+               "{{target_dir}}/Contents/MacOS/libjli.dylib"],
+        sudo: true
   end
 
   caveats <<~EOS
