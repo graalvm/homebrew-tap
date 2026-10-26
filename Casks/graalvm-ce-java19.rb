@@ -15,16 +15,6 @@ cask "graalvm-ce-java19" do
 
   artifact "#{cask}-#{version}", target: target_dir
 
-  postflight do
-    # Correct symlink
-    macos_dir = "#{target_dir}/Contents/MacOS"
-    libjli_filename = "libjli.dylib"
-    libjli_path = "#{target_dir}/Contents/Home/lib/#{libjli_filename}"
-    libjli_symlink_path = "#{macos_dir}/#{libjli_filename}"
-    system_command "/bin/mkdir", args: ["-p", macos_dir], sudo: true
-    system_command "/bin/ln", args: ["-s", "-f", libjli_path, libjli_symlink_path], sudo: true
-  end
-
   caveats <<~EOS
     Installing GraalVM CE (Java 19) in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
