@@ -12,18 +12,6 @@ cask "graalvm-ce-lts-java11" do
 
   artifact "graalvm-ce-java11-#{version}", target: target_dir
 
-  postflight do
-    # Ensure GraalVM JDK 11 is listed by `/usr/libexec/java_home -V`.
-    macos_dir = "#{target_dir}/Contents/MacOS"
-    libjli_filename = "libjli.dylib"
-    libjli_path = "#{target_dir}/Contents/Home/lib/jli/#{libjli_filename}"
-    libjli_symlink_path = "#{macos_dir}/#{libjli_filename}"
-    next if File.exist?(libjli_symlink_path)
-
-    system_command "/bin/mkdir", args: ["-p", macos_dir], sudo: true
-    system_command "/bin/ln", args: ["-s", libjli_path, libjli_symlink_path], sudo: true
-  end
-
   caveats <<~EOS
     Installing GraalVM CE LTS (Java 11) in #{jvms_dir} requires root permission.
     You may be asked to enter your password to proceed.
