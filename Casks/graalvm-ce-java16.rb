@@ -12,14 +12,15 @@ cask "graalvm-ce-java16" do
 
   artifact "#{cask}-#{version}", target: target_dir
 
-  postflight do
-    # Correct symlink
-    macos_dir = "#{target_dir}/Contents/MacOS"
-    libjli_filename = "libjli.dylib"
-    libjli_path = "#{target_dir}/Contents/Home/lib/#{libjli_filename}"
-    libjli_symlink_path = "#{macos_dir}/#{libjli_filename}"
-    system_command "/bin/mkdir", args: ["-p", macos_dir], sudo: true
-    system_command "/bin/ln", args: ["-s", "-f", libjli_path, libjli_symlink_path], sudo: true
+  postflight_steps do
+    # Correct the broken libjli symlink in the GraalVM 21.2.0 archive.
+    run "/bin/mkdir",
+        args: ["-p", "/Library/Java/JavaVirtualMachines/{{token}}-{{version}}/Contents/MacOS"],
+        sudo: true
+    run "/bin/ln",
+        args: ["-s", "-f", "/Library/Java/JavaVirtualMachines/{{token}}-{{version}}/Contents/Home/lib/libjli.dylib",
+               "/Library/Java/JavaVirtualMachines/{{token}}-{{version}}/Contents/MacOS/libjli.dylib"],
+        sudo: true
   end
 
   caveats <<~EOS
