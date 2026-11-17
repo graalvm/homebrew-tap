@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-14]
+        os: [macos-15]
         java-version: [17, 21, 25, '25i']
         distribution: ['', '-community']
     env:
