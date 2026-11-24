@@ -4,7 +4,7 @@ cask "graalvm-community-jdk25i" do
   version "25.6.5.1"
   sha256 arm: "19ef5175f18fe2a957a5ec4cc3dd263a164e88ae621cf80ee1c715ede72469f0"
 
-  installation_dir = "graalvm-community-#{version}+1.1".freeze
+  installation_dir = "graalvm-community-#{version}+2.1".freeze
   jvms_dir = "/Library/Java/JavaVirtualMachines".freeze
   target_dir = "#{jvms_dir}/graalvm-community-openjdk-#{version.split(".").first}".freeze
 
