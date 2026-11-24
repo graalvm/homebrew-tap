@@ -21,11 +21,16 @@ jobs:
     - name: Clone repository
       uses: actions/checkout@v4
 
+    - name: Register PR checkout as tap
+      run: brew tap --custom-remote graalvm/tap "$GITHUB_WORKSPACE"
+    
     - name: Check style
-      run: brew style Casks/${CASK_NAME}.rb
+      run: brew style "Casks/${CASK_NAME}.rb"
 
     - name: Install cask
-      run: brew reinstall --cask --require-sha Casks/${CASK_NAME}.rb
+      run: |
+        brew trust --cask "graalvm/tap/${CASK_NAME}"
+        brew reinstall --cask --require-sha "graalvm/tap/${CASK_NAME}"
 
     - name: Validate installation
       run: |
